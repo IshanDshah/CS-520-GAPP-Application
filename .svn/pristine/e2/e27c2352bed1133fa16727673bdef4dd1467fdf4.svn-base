@@ -1,0 +1,27 @@
+package springmvc.model.dao.jpa;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import springmvc.model.Application;
+import springmvc.model.dao.ApplicationDao;
+
+public class ApplicationDaoImpl implements ApplicationDao {
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Override
+	public Application getapplication(Integer application_Id) {
+		return entityManager.find(Application.class, application_Id);
+
+	}
+
+	@Override
+	public List<Application> getapplications() {
+		return entityManager.createQuery("from Application order by application_Id", Application.class).getResultList();
+
+	}
+
+}

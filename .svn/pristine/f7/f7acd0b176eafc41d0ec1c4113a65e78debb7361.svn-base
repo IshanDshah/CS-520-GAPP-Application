@@ -1,0 +1,17 @@
+package gapp.model.dao;
+
+import java.util.List;
+
+import gapp.model.Department;
+import gapp.model.Program;
+
+public interface ProgramDao {
+
+	Program getProgram(Integer programId);
+
+	List<Program> getProgram();
+
+	Program saveProgram(Program program);
+
+	void removeProgram(Program program);
+}

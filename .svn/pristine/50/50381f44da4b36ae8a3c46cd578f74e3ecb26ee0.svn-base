@@ -1,0 +1,31 @@
+package springmvc.model.dao.jpa;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
+import springmvc.model.ApplicationStatus;
+import springmvc.model.dao.ApplicationStatusDao;
+
+@Repository
+public class ApplicationStatusDaoImpl implements ApplicationStatusDao {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Override
+	public ApplicationStatus getApplicationStatus(Integer status_Id) {
+		return entityManager.find(ApplicationStatus.class, status_Id);
+
+	}
+
+	@Override
+	public List<ApplicationStatus> getstatus() {
+		return entityManager.createQuery("from ApplicationStatus order by status_Id", ApplicationStatus.class)
+				.getResultList();
+	}
+
+}

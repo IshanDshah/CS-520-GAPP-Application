@@ -1,0 +1,12 @@
+drop table application cascade;
+drop table Degree cascade;
+drop table Department cascade;
+drop table users cascade;
+drop table ExtraInfo cascade;
+drop table program cascade;
+drop table status cascade;
+drop table StudentDetails cascade;
+drop table users cascade;
+drop table Users_userType cascade;
+
+drop sequence hibernate_sequence;

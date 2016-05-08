@@ -1,0 +1,13 @@
+package springmvc.model.dao;
+
+import java.util.List;
+
+import springmvc.model.ApplicationStatus;
+
+public interface ApplicationStatusDao {
+
+	ApplicationStatus getApplicationStatus(Integer status_Id);
+
+	List<ApplicationStatus> getstatus();
+
+}

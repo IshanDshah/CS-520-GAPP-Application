@@ -1,0 +1,31 @@
+package springmvc.model.dao.jpa;
+
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
+import org.springframework.stereotype.Repository;
+
+import springmvc.model.ExtraInfo;
+import springmvc.model.dao.ExtraInfoDao;
+
+@Repository
+public class ExtraInfoDaoImpl implements ExtraInfoDao {
+
+	@PersistenceContext
+	private EntityManager entityManager;
+
+	@Override
+	public ExtraInfo getExtraInfo(Integer extr_id) {
+		return entityManager.find(ExtraInfo.class, extr_id);
+
+	}
+
+	@Override
+	public List<ExtraInfo> getExtraInfo() {
+		return entityManager.createQuery("from ExtraInfo order by extr_id", ExtraInfo.class).getResultList();
+
+	}
+
+}

@@ -1,0 +1,124 @@
+
+    create table Degree (
+        degree_Id int4 not null,
+        collegeName varchar(255),
+        degreeGained varchar(255),
+        endDate timestamp,
+        major varchar(255),
+        startDate timestamp,
+        student_student_id int4,
+        primary key (degree_Id)
+    );
+
+    create table Department (
+        departmentId int4 not null,
+        departmentName varchar(255),
+        primary key (departmentId)
+    );
+
+    create table ExtraInfo (
+        extr_id int4 not null,
+        fieldName varchar(255),
+        fieldType varchar(255),
+        required boolean,
+        department_departmentId int4,
+        primary key (extr_id)
+    );
+
+    create table StudentDetails (
+        student_id int4 not null,
+        cin int4,
+        citizenship varchar(255),
+        dateOfBirth timestamp,
+        email varchar(255),
+        firstName varchar(255),
+        gender varchar(255),
+        gpa float8 not null,
+        gre float8 not null,
+        lastName varchar(255),
+        phone varchar(255),
+        toefl float8 not null,
+        transcript varchar(255),
+        departmentId int4,
+        primary key (student_id)
+    );
+
+    create table Users_userType (
+        Users_user_id int4 not null,
+        userType varchar(255)
+    );
+
+    create table application (
+        application_Id int4 not null,
+        term varchar(255),
+        programId int4,
+        primary key (application_Id)
+    );
+
+    create table program (
+        programId int4 not null,
+        programName varchar(255),
+        departmentId int4,
+        primary key (programId)
+    );
+
+    create table status (
+        status_Id int4 not null,
+        comment varchar(255),
+        eventTime timestamp,
+        status varchar(255),
+        application_Id int4,
+        student_Id int4,
+        primary key (status_Id)
+    );
+
+    create table users (
+        user_id int4 not null,
+        email varchar(255),
+        firstName varchar(255),
+        lastname varchar(255),
+        password varchar(255),
+        primary key (user_id)
+    );
+
+    alter table Degree 
+        add constraint FK_3ktd1yah4baaujn9dsigtceyu 
+        foreign key (student_student_id) 
+        references StudentDetails;
+
+    alter table ExtraInfo 
+        add constraint FK_359yguvgkq7kjr3abq8dhilwe 
+        foreign key (department_departmentId) 
+        references Department;
+
+    alter table StudentDetails 
+        add constraint FK_o83wwnmxik9yx4ebwgruyj5ut 
+        foreign key (departmentId) 
+        references Department;
+
+    alter table Users_userType 
+        add constraint FK_2ubex18cs3u6usevrb8lc4bcx 
+        foreign key (Users_user_id) 
+        references users;
+
+    alter table application 
+        add constraint FK_7l8toxfx1ynqeh4nw52l2t4r6 
+        foreign key (programId) 
+        references program;
+
+    alter table program 
+        add constraint FK_bq6pwous3kn749uhrc7r96n4c 
+        foreign key (departmentId) 
+        references Department;
+
+    alter table status 
+        add constraint FK_73dc6kr6gkt5jwd7vpjlcicx2 
+        foreign key (application_Id) 
+        references application;
+
+    alter table status 
+        add constraint FK_boxlykpmea4ne57ixifhlhrxp 
+        foreign key (student_Id) 
+        references StudentDetails;
+
+    create sequence hibernate_sequence;

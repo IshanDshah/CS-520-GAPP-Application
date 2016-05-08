@@ -1,0 +1,23 @@
+@CHARSET "ISO-8859-1";
+
+body {
+    background-color: LightGray;
+    font: 14px/1.5em "Lucida Grande",Arial,sans-serif;
+    margin: 20px;
+    width: auto;
+  
+} 
+#header {
+    background-color:black;
+    color:white;
+    text-align:center;
+    padding:5px;
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    position:bottom;
+    text-align:center;
+   padding:5px;
+}

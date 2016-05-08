@@ -1,0 +1,207 @@
+
+    create table Degree (
+        degree_Id int4 not null,
+        collegeName varchar(255),
+        degreeGained varchar(255),
+        endDate timestamp,
+        major varchar(255),
+        startDate timestamp,
+        student_student_id int4,
+        primary key (degree_Id)
+    );
+
+    create table Deparmtent (
+        departmentId int4 not null,
+        departmentName varchar(255),
+        primary key (departmentId)
+    );
+
+    create table ExtraInfo (
+        extr_id int4 not null,
+        fieldName varchar(255),
+        fieldType varchar(255),
+        required boolean,
+        application_application_Id int4,
+        primary key (extr_id)
+    );
+
+    create table StudentDetails (
+        student_id int4 not null,
+        cin int4,
+        citizenship varchar(255),
+        dateOfBirth timestamp,
+        email varchar(255),
+        firstName varchar(255),
+        gender varchar(255),
+        gpa float8 not null,
+        gre float8 not null,
+        lastName varchar(255),
+        phone varchar(255),
+        toefl float8 not null,
+        transcript varchar(255),
+        departmentId int4,
+        primary key (student_id)
+    );
+
+    create table Users_userType (
+        Users_user_id int4 not null,
+        userType varchar(255)
+    );
+
+    create table application (
+        application_Id int4 not null,
+        term varchar(255),
+        programId int4,
+        primary key (application_Id)
+    );
+
+    create table program (
+        programId int4 not null,
+        programName varchar(255),
+        departmentId int4,
+        primary key (programId)
+    );
+
+    create table status (
+        status_Id int4 not null,
+        comment varchar(255),
+        eventTime timestamp,
+        status varchar(255),
+        application_Id int4,
+        student_Id int4,
+        primary key (status_Id)
+    );
+
+    create table users (
+        user_id int4 not null,
+        email varchar(255),
+        firstName varchar(255),
+        lastname varchar(255),
+        password varchar(255),
+        primary key (user_id)
+    );
+
+    alter table Degree 
+        add constraint FK_3ktd1yah4baaujn9dsigtceyu 
+        foreign key (student_student_id) 
+        references StudentDetails;
+
+    alter table ExtraInfo 
+        add constraint FK_psbmxq8551ua5xi8h6vknngcf 
+        foreign key (application_application_Id) 
+        references application;
+
+    alter table StudentDetails 
+        add constraint FK_o83wwnmxik9yx4ebwgruyj5ut 
+        foreign key (departmentId) 
+        references Deparmtent;
+
+    alter table Users_userType 
+        add constraint FK_2ubex18cs3u6usevrb8lc4bcx 
+        foreign key (Users_user_id) 
+        references users;
+
+    alter table application 
+        add constraint FK_7l8toxfx1ynqeh4nw52l2t4r6 
+        foreign key (programId) 
+        references program;
+
+    alter table program 
+        add constraint FK_bq6pwous3kn749uhrc7r96n4c 
+        foreign key (departmentId) 
+        references Deparmtent;
+
+    alter table status 
+        add constraint FK_73dc6kr6gkt5jwd7vpjlcicx2 
+        foreign key (application_Id) 
+        references application;
+
+    alter table status 
+        add constraint FK_boxlykpmea4ne57ixifhlhrxp 
+        foreign key (student_Id) 
+        references StudentDetails;
+
+    create sequence hibernate_sequence;
+
+	
+
+
+
+
+INSERT INTO public.users(
+            user_id, email, firstname, lastname, password)
+    VALUES (1, 'admin@localhost.localdomain', 'john', 'doe', 'abcd');
+
+    INSERT INTO public.users(
+            user_id, email, firstname, lastname, password)
+    VALUES (2, 'staff1@localhost.localdomain', 'doe', 'john', 'abcd');
+
+    INSERT INTO public.users(
+            user_id, email, firstname, lastname, password)
+    VALUES (3, 'staff2@localhost.localdomain','joane' , 'tien', 'abcd');
+
+    INSERT INTO public.users(
+            user_id, email, firstname, lastname, password)
+    VALUES (4, 'student1@localhost.localdomain', 'ishan', 'shah', 'abcd');
+
+        INSERT INTO public.users(
+            user_id, email, firstname, lastname, password)
+    VALUES (5, 'student2@localhost.localdomain', 'sam', 'shah', 'abcd');
+
+    
+    
+    INSERT INTO public.deparmtent(
+            departmentid, departmentname)
+    VALUES (1, 'Accounting Department');
+
+    INSERT INTO public.deparmtent(
+            departmentid, departmentname)
+    VALUES (2, 'Computer Science Department');
+
+    
+
+    INSERT INTO public.program(
+            programid, programname, departmentid)
+    VALUES (1, 'MS in Accounting', 1);
+
+    INSERT INTO public.program(
+            programid, programname, departmentid)
+    VALUES (2, 'MS in Computer Science', 2);
+
+    
+    
+    INSERT INTO public.application(
+            application_id, term, programid)
+    VALUES (1, 'Fall 2015', 1);
+
+    INSERT INTO public.application(
+            application_id, term, programid)
+    VALUES (2, 'Fall 2016', 1);
+
+    
+    INSERT INTO public.extrainfo(
+            extr_id, fieldname, fieldtype, required, application_application_id)
+    VALUES (1, 'GMAT', 'number', true, 1);
+    
+    
+    INSERT INTO public.studentdetails(
+            student_id, cin, citizenship, dateofbirth, email, firstname, 
+            gender, gpa, gre, lastname, phone, toefl, transcript, departmentid)
+    VALUES (1, '304387556','indian', '1990-11-30','student1@localhost.localdomain', 'ishan', 
+            'male',3.6 ,320 , 'shah','408-242-3237', 101, 'great', 1);
+
+    
+    INSERT INTO public.degree(
+            degree_id, collegename, degreegained, enddate, major, startdate, 
+            student_student_id)
+    VALUES (1, 'HGCE', 'B.E', '2014-10-12', 'CS', '2010-12-12', 
+            1);
+    
+            
+    INSERT INTO public.status(
+            status_id, comment, eventtime, status, application_id, student_id)
+    VALUES (1, 'Submitted', '2016-01-30', 'Submitted', 1, 1);
+
+            
+
+    

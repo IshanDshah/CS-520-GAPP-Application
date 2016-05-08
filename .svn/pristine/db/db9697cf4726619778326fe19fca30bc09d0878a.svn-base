@@ -1,0 +1,13 @@
+package springmvc.model.dao;
+
+import java.util.List;
+
+import springmvc.model.ExtraInfo;;
+
+public interface ExtraInfoDao {
+
+	ExtraInfo getExtraInfo(Integer extr_id);
+
+	List<ExtraInfo> getExtraInfo();
+
+}
